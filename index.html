@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You 🌹</title>
+    <style>
+        body { background-color: #fff1f2; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        #container { background: white; padding: 40px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; }
+        h1 { color: #e11d48; font-size: 24px; margin-bottom: 30px; }
+        .btn-group { position: relative; height: 60px; }
+        button { padding: 12px 30px; font-size: 18px; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+        #yes-btn { background-color: #22c55e; color: white; margin-right: 10px; }
+        #no-btn { background-color: #ef4444; color: white; position: absolute; }
+        #roses { font-size: 60px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1 id="text">Your video just made my whole day 😊</h1>
+        <div class="btn-group">
+            <button id="yes-btn" onclick="nextStep()">Next ➡️</button>
+            <button id="no-btn" onmouseover="moveButton()">No</button>
+        </div>
+        <div id="roses">🌹🌹🌹</div>
+    </div>
+
+    <script>
+        let step = 0;
+        const messages = [
+            "Your video just made my whole day 😊",
+            "I like you. Not just your looks, but your vibe too. Watching your video, I just realized I really like you. The way you smile... it’s different. ❤️",
+            "I really, really do like you, momma. I was wondering... what are we going to do about that? 😊"
+        ];
+
+        function moveButton() {
+            const btn = document.getElementById('no-btn');
+            btn.style.left = (Math.random() * 200) + 'px';
+            btn.style.top = (Math.random() * 100) + 'px';
+        }
+
+        function nextStep() {
+            step++;
+            if (step < messages.length) {
+                document.getElementById('text').innerText = messages[step];
+                if (step === 2) {
+                    document.getElementById('yes-btn').innerText = "Yes! ❤️";
+                    document.getElementById('yes-btn').onclick = celebrate;
+                }
+            }
+        }
+
+        function celebrate() {
+            document.getElementById('text').innerText = "I'm so happy you feel the same! 🥰";
+            document.getElementById('yes-btn').style.display = 'none';
+            document.getElementById('no-btn').style.display = 'none';
+            document.getElementById('roses').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
